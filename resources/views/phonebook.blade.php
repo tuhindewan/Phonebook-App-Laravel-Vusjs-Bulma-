@@ -8,6 +8,9 @@
 
  <div id="app">
  	<myheader></myheader>
+ 		<div class="container">
+ 			<router-view></router-view>
+ 		</div>
  	<myfooter></myfooter>
  </div>
 
