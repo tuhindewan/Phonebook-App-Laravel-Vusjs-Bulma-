@@ -43,9 +43,11 @@
 		props : ['openModal'],
 		data(){
 			return{
-					name:'',
-					phone:'',
-					email:''
+					
+						name:'',
+						phone:'',
+						email:''
+					
 				}
 		},
 		methods : {

@@ -31,7 +31,7 @@
 
 	    </section>
 	    <footer class="modal-card-foot">
-	      <button class="button is-success" @click="save">Save changes</button>
+	      <button class="button is-success">Save changes</button>
 	      <button class="button" @click="close">Cancel</button>
 	    </footer>
 	  </div>
@@ -41,22 +41,10 @@
 <script>
 	export default{
 		props : ['openModal'],
-		data(){
-			return{
-					name:'',
-					phone:'',
-					email:''
-				}
-		},
 		methods : {
 			close : function(){
-				this.$emit('cancelRequest');
-			},
-
-			save : function(){
-				axios.post('/phonebook',this.$data).then((response)=>this.close())
-				  .catch((error)=>console.log(error));
+				this.$emit('cancelRequest')
 			}
-		},
+		}
 	}
 </script>
