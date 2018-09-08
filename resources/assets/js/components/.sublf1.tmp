@@ -19,17 +19,15 @@
 	      <div class="field">
 	        <label class="label">Phone</label>
 	        <div class="control">
-	          <input class="input" :class="{'is-danger':errors.phone}" type="text" placeholder="Phone" v-model="phone">
+	          <input class="input" type="text" placeholder="Phone" v-model="phone">
 	        </div>
-	        <small v-if="errors.phone" class="has-text-danger">{{ errors.phone[0] }}</small>
 	      </div>
 
 	      <div class="field">
 	        <label class="label">Email</label>
 	        <div class="control">
-	          <input class="input" :class="{'is-danger':errors.email}" type="text" placeholder="Email" v-model="email">
+	          <input class="input" type="text" placeholder="Email" v-model="email">
 	        </div>
-	        <small v-if="errors.email" class="has-text-danger">{{ errors.email[0] }}</small>
 	      </div>
 
 	    </section>
