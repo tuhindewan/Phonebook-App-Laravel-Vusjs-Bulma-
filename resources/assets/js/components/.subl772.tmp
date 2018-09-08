@@ -32,13 +32,13 @@
 		  </a>
 		</nav>
 
-		<add :openModal="addActive" @cancelRequest="close"></add>
+		<add></add>
 
 	</div>
 </template>
 
 <script>
-let add = require('./add.vue');
+let add = require('./Add.vue');
 	export default{
 		components:{add},
 		data(){
@@ -47,11 +47,8 @@ let add = require('./add.vue');
 			}
 		},
 		methods:{
-			addNew(){
+			openAdd(){
 				this.addActive = 'is-active';
-			},
-			close(){
-				this.addActive = "";
 			}
 		}
 	}
