@@ -15,9 +15,9 @@
 		      </span>
 		    </p>
 		  </div>
-		  <a class="panel-block is-active" v-for="item in items">
+		  <a class="panel-block is-active">
 	    	<div class="column is-9">
-	    		{{ item.name }}
+	    		bulma
 	    	</div>
 	    	<div class="column has-text-danger panel-icon is-1">
 	    		<i class="fa fa-trash" aria-hidden="true"></i>
@@ -43,12 +43,10 @@ let add = require('./add.vue');
 		data(){
 			return{
 				addActive : '',
-				items :{},
-				errors : {},
 			}
 		},
 		mounted(){
-			axios.post('/getData').then((response)=> this.items = response.data)
+			axios.post('/phonebook',this.$data).then((response)=>this.close())
 			  .catch((error)=>this.errors = error.response.data);
 		},
 		methods:{

@@ -43,6 +43,10 @@ class PhoneBookController extends Controller
         $pb->save();
     }
 
+    public function getData(){
+        return PhoneBook::orderBy('name','ASC')->get();
+    }
+
     /**
      * Display the specified resource.
      *

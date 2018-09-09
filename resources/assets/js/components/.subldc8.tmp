@@ -17,7 +17,7 @@
 		  </div>
 		  <a class="panel-block is-active" v-for="item in items">
 	    	<div class="column is-9">
-	    		{{ item.name }}
+	    		bulma
 	    	</div>
 	    	<div class="column has-text-danger panel-icon is-1">
 	    		<i class="fa fa-trash" aria-hidden="true"></i>

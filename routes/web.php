@@ -20,3 +20,4 @@ Route::get('/phonebook/{name}', function () {
 })->where('name','[A-za-z]+');
 
 Route::resource('/phonebook','PhonebookController');
+Route::post('/getData','PhonebookController@getData');
