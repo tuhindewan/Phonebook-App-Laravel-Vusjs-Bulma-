@@ -20,7 +20,7 @@
 	    		{{ item.name }}
 	    	</div>
 	    	<div class="column has-text-danger panel-icon is-1">
-	    		<i class="fa fa-trash" aria-hidden="true" @click="del(key,item.id)"></i>
+	    		<i class="fa fa-trash" aria-hidden="true" @click="del(key,list.id)"></i>
 	    	</div>
 	    	<div class="column has-text-info  panel-icon is-1">
 	    		<i class="fa fa-edit" aria-hidden="true" @click="openUpdate(key)"></i>
@@ -70,7 +70,7 @@ let update = require('./update.vue');
 				this.updateActive = "is-active";
 			},
 			del(key,id){
-				axios.delete('/phonebook/${id}').then((response)=> this.items.splice(key,1))
+				axios.delete('/phonebook/${id}').then((response)=> this.items = response.data)
 				  .catch((error)=>this.errors = error.response.data);
 			},
 			close(){

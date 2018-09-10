@@ -70,7 +70,7 @@ let update = require('./update.vue');
 				this.updateActive = "is-active";
 			},
 			del(key,id){
-				axios.delete('/phonebook/${id}').then((response)=> this.items.splice(key,1))
+				axios.delete(`/phonebook/${id}`).then((response)=> this.items.splice(key,1))
 				  .catch((error)=>this.errors = error.response.data);
 			},
 			close(){

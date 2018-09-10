@@ -43781,6 +43781,15 @@ var update = __webpack_require__(65);
 			this.$children[2].item = this.items[key];
 			this.updateActive = "is-active";
 		},
+		del: function del(key, id) {
+			var _this2 = this;
+
+			axios.delete('/phonebook/${id}').then(function (response) {
+				return _this2.items.splice(key, 1);
+			}).catch(function (error) {
+				return _this2.errors = error.response.data;
+			});
+		},
 		close: function close() {
 			this.addActive = this.showActive = this.updateActive = "";
 		}
@@ -44102,7 +44111,21 @@ var render = function() {
                 _vm._v("\n    \t\t" + _vm._s(item.name) + "\n    \t")
               ]),
               _vm._v(" "),
-              _vm._m(1, true),
+              _c(
+                "div",
+                { staticClass: "column has-text-danger panel-icon is-1" },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-trash",
+                    attrs: { "aria-hidden": "true" },
+                    on: {
+                      click: function($event) {
+                        _vm.del(key, item.id)
+                      }
+                    }
+                  })
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -44179,21 +44202,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "column has-text-danger panel-icon is-1" },
-      [
-        _c("i", {
-          staticClass: "fa fa-trash",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
   }
 ]
 render._withStripped = true
