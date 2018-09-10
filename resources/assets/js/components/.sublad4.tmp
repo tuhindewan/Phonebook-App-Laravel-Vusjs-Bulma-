@@ -1,35 +1,68 @@
 <template>
-	<div class="modal" :class="openModal">
-	  <div class="modal-background"></div>
-	  <div class="modal-card">
-	    <header class="modal-card-head">
-	      <p class="modal-card-title">Modal title</p>
-	      <button class="delete" aria-label="close" @click="close"></button>
-	    </header>
-	    <section class="modal-card-body">
+	<div>
+		<nav class="panel column is-offset-2 is-8">
+		  <p class="panel-heading">
+		    Vuejs Phonebook
+		    <button class="button is-link is-outlined" @click="addNew">
+		      Add New
+		    </button>
+		  </p>
+		  <div class="panel-block">
+		    <p class="control has-icons-left">
+		      <input class="input is-small" type="text" placeholder="search">
+		      <span class="icon is-small is-left">
+		        <i class="fa fa-search" aria-hidden="true"></i>
+		      </span>
+		    </p>
+		  </div>
+		  <a class="panel-block is-active" v-for="item in items">
+	    	<div class="column is-9">
+	    		{{ item.id }}
+	    	</div>
+	    	<div class="column has-text-danger panel-icon is-1">
+	    		<i class="fa fa-trash" aria-hidden="true"></i>
+	    	</div>
+	    	<div class="column has-text-info  panel-icon is-1">
+	    		<i class="fa fa-edit" aria-hidden="true"></i>
+	    	</div>
+	    	<div class="column has-text-primary panel-icon is-1">
+	    		<i class="fa fa-eye" aria-hidden="true" @click="openShow"></i>
+	    	</div>
+		  </a>
+		</nav>
 
-	      <div class="field">
-	        <label class="label">Name</label>
-	        <div class="control">
-	          <input class="input" type="text" placeholder="Text input">
-	        </div>
-	      </div>
+		<add :openModal="addActive" @cancelRequest="close"></add>
+		<show :openModal="showActive" @cancelRequest="close"></show>
 
-	    </section>
-	    <footer class="modal-card-foot">
-	      <button class="button is-success">Save changes</button>
-	      <button class="button" @click="close">Cancel</button>
-	    </footer>
-	  </div>
 	</div>
 </template>
 
 <script>
+let add = require('./add.vue');
+let show = require('./show.vue');
 	export default{
-		props : ['openModal'],
-		methods : {
-			close : function(){
-				this.$emit('cancelRequest')
+		components:{add,show},
+		data(){
+			return{
+				addActive : '',
+				showActive : '',
+				items :{},
+				errors : {},
+			}
+		},
+		mounted(){
+			axios.post('/getData').then((response)=> this.items = response.data)
+			  .catch((error)=>this.errors = error.response.data);
+		},
+		methods:{
+			addNew(){
+				this.addActive = 'is-active';
+			},
+			openShow(){
+				this.showActive = "is-active";
+			},
+			close(){
+				this.addActive = this.showActive= "";
 			}
 		}
 	}

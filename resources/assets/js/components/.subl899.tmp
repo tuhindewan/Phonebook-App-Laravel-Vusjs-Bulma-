@@ -7,13 +7,25 @@
 	      <button class="delete" aria-label="close" @click="close"></button>
 	    </header>
 	    <section class="modal-card-body">
-
-	      <div class="field">
-	        <label class="label">Name</label>
-	        <div class="control">
-	          <input class="input" type="text" placeholder="Text input">
-	        </div>
-	      </div>
+	    	<div class="field">
+	    	  <label class="label">Name</label>
+	    	  <div class="control">
+	    	    {{ item.name }}
+	    	  </div>
+	    	</div>
+	    	<div class="field">
+	    	  <label class="label">Phone</label>
+	    	  <div class="control">
+	    	    {{ item.phone }}
+	    	  </div>
+	    	</div>
+	    	<div class="field">
+	    	  <label class="label">Email</label>
+	    	  <div class="control">
+	    	    {{ item.email }}
+	    	  </div>
+	    	</div>
+	      
 
 	    </section>
 	    <footer class="modal-card-foot">
@@ -27,10 +39,17 @@
 <script>
 	export default{
 		props : ['openModal'],
+
+		data(){
+			return{
+				item: "",
+			}
+		},
+
 		methods : {
 			close : function(){
-				this.$emit('cancelRequest')
-			}
-		}
+				this.$emit('cancelRequest');
+			},
+		},
 	}
 </script>

@@ -17,7 +17,7 @@
 		  </div>
 		  <a class="panel-block is-active" v-for="item in items">
 	    	<div class="column is-9">
-	    		bulma
+	    		{{ item.id }}
 	    	</div>
 	    	<div class="column has-text-danger panel-icon is-1">
 	    		<i class="fa fa-trash" aria-hidden="true"></i>
@@ -26,25 +26,28 @@
 	    		<i class="fa fa-edit" aria-hidden="true"></i>
 	    	</div>
 	    	<div class="column has-text-primary panel-icon is-1">
-	    		<i class="fa fa-eye" aria-hidden="true"></i>
+	    		<i class="fa fa-eye" aria-hidden="true" @click="openShow"></i>
 	    	</div>
 		  </a>
 		</nav>
 
 		<add :openModal="addActive" @cancelRequest="close"></add>
+		<show :openModal="showActive" @cancelRequest="close"></show>
 
 	</div>
 </template>
 
 <script>
 let add = require('./add.vue');
+let show = require('./show.vue');
 	export default{
-		components:{add},
+		components:{add,show},
 		data(){
 			return{
 				addActive : '',
-				items :[],
-				errors : [],
+				showActive : '',
+				items :{},
+				errors : {},
 			}
 		},
 		mounted(){
@@ -55,8 +58,11 @@ let add = require('./add.vue');
 			addNew(){
 				this.addActive = 'is-active';
 			},
+			openShow(){
+				this.showActive = "is-active";
+			},
 			close(){
-				this.addActive = "";
+				this.addActive = this.showActive= "";
 			}
 		}
 	}
