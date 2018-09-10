@@ -3,7 +3,7 @@
 	  <div class="modal-background"></div>
 	  <div class="modal-card">
 	    <header class="modal-card-head">
-	      <p class="modal-card-title">Add New Entry</p>
+	      <p class="modal-card-title">Update {{ item.name }}'s Details</p>
 	      <button class="delete" aria-label="close" @click="close"></button>
 	    </header>
 	    <section class="modal-card-body">
@@ -34,7 +34,7 @@
 
 	    </section>
 	    <footer class="modal-card-foot">
-	      <button class="button is-success" @click="save">Save</button>
+	      <button class="button is-success" @click="update">Save</button>
 	      <button class="button" @click="close">Cancel</button>
 	    </footer>
 	  </div>
@@ -46,11 +46,7 @@
 		props : ['openModal'],
 		data(){
 			return{
-					item:{
-						name:'',
-						phone:'',
-						email:''
-					},
+					item : "",
 					errors :{},
 				}
 		},
@@ -59,8 +55,8 @@
 				this.$emit('cancelRequest');
 			},
 
-			save : function(){
-				axios.post('/phonebook',this.$data.item).then((response)=>this.close())
+			update : function(){
+				axios.patch(`/phonebook/`${this.item.id},this.$data.item).then((response)=>this.close())
 				  .catch((error)=>this.errors = error.response.data);
 			}
 		},

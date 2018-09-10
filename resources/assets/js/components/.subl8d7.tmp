@@ -11,7 +11,7 @@
 	      <div class="field">
 	        <label class="label">Name</label>
 	        <div class="control">
-	          <input class="input" :class="{'is-danger':errors.name}" type="text" placeholder="Name" v-model="item.name">
+	          <input class="input" :class="{'is-danger':errors.name}" type="text" placeholder="Name" v-model="name">
 	        </div>
 	        <small v-if="errors.name" class="has-text-danger">{{ errors.name[0] }}</small>
 	      </div>
@@ -19,7 +19,7 @@
 	      <div class="field">
 	        <label class="label">Phone</label>
 	        <div class="control">
-	          <input class="input" :class="{'is-danger':errors.phone}" type="text" placeholder="Phone" v-model="item.phone">
+	          <input class="input" :class="{'is-danger':errors.phone}" type="text" placeholder="Phone" v-model="phone">
 	        </div>
 	        <small v-if="errors.phone" class="has-text-danger">{{ errors.phone[0] }}</small>
 	      </div>
@@ -27,7 +27,7 @@
 	      <div class="field">
 	        <label class="label">Email</label>
 	        <div class="control">
-	          <input class="input" :class="{'is-danger':errors.email}" type="text" placeholder="Email" v-model="item.email">
+	          <input class="input" :class="{'is-danger':errors.email}" type="text" placeholder="Email" v-model="email">
 	        </div>
 	        <small v-if="errors.email" class="has-text-danger">{{ errors.email[0] }}</small>
 	      </div>
@@ -46,11 +46,7 @@
 		props : ['openModal'],
 		data(){
 			return{
-					item:{
-						name:'',
-						phone:'',
-						email:''
-					},
+					item : "",
 					errors :{},
 				}
 		},
@@ -60,7 +56,7 @@
 			},
 
 			save : function(){
-				axios.post('/phonebook',this.$data.item).then((response)=>this.close())
+				axios.post('/phonebook',this.$data).then((response)=>this.close())
 				  .catch((error)=>this.errors = error.response.data);
 			}
 		},

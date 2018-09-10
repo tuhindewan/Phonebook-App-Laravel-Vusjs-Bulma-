@@ -78,7 +78,7 @@ class PhoneBookController extends Controller
      */
     public function update(PhonebookRequest $request)
     {
-        $pb = PhoneBook::find($request->id);
+        $pb = PhoneBook::find($phonebook);
         $pb->name = $request->name;
         $pb->phone = $request->phone;
         $pb->email = $request->email;

@@ -23,7 +23,7 @@
 	    		<i class="fa fa-trash" aria-hidden="true"></i>
 	    	</div>
 	    	<div class="column has-text-info  panel-icon is-1">
-	    		<i class="fa fa-edit" aria-hidden="true"></i>
+	    		<i class="fa fa-edit" aria-hidden="true" @click="openUpdate(key)"></i>
 	    	</div>
 	    	<div class="column has-text-primary panel-icon is-1">
 	    		<i class="fa fa-eye" aria-hidden="true" @click="openShow(key)"></i>
@@ -33,6 +33,7 @@
 
 		<add :openModal="addActive" @cancelRequest="close"></add>
 		<show :openModal="showActive" @cancelRequest="close"></show>
+		<update :openModal="updateActive" @cancelRequest="close"></update>
 
 	</div>
 </template>
@@ -40,12 +41,14 @@
 <script>
 let add = require('./add.vue');
 let show = require('./show.vue');
+let update = require('./update.vue');
 	export default{
-		components:{add,show},
+		components:{add,show,update},
 		data(){
 			return{
 				addActive : '',
 				showActive : '',
+				updateActive : '',
 				items :{},
 				errors : {},
 			}
@@ -62,8 +65,12 @@ let show = require('./show.vue');
 				this.$children[1].item = this.items[key];
 				this.showActive = "is-active";
 			},
+			openUpdate(key){
+				this.$children[2].item = this.items[key];
+				this.updateActive = "is-active";
+			},
 			close(){
-				this.addActive = this.showActive= "";
+				this.addActive = this.showActive= this.updateActive = "";
 			}
 		}
 	}
