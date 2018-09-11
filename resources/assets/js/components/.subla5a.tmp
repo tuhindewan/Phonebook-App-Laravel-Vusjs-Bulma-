@@ -63,8 +63,6 @@ let update = require('./update.vue');
 					    	return item.name.toLowerCase().indexOf(this.searchQuery.toLowerCase()) > -1
 					    }
 					  );
-				}else{
-					this.temp = this.lists
 				}
 			},
 		},

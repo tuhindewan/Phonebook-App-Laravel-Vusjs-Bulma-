@@ -60,11 +60,7 @@
 			},
 
 			save : function(){
-				axios.post('/phonebook',this.$data.item)
-				.then((response)=>{ 
-								this.close() 
-								this.$parent.items.push(this.$data.item)
-									})
+				axios.post('/phonebook',this.$data.item).then((response)=>{this.close() this.$parent.push(this.$data)})
 				  .catch((error)=>this.errors = error.response.data);
 			}
 		},
